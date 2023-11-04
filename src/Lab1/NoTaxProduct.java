@@ -46,5 +46,6 @@ public class NoTaxProduct extends Product{
             product.select();
             product.delete();
         }
+        System.out.println("Them thanh cong");
     }
 }
