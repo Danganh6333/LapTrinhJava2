@@ -64,6 +64,7 @@ public class Product implements DAO{
             System.out.println("The Price Of The Product : " + product.getPrice());
             System.out.println("The Import Tax Of The Product :" + product.getImportTax());
         }
+         System.out.println("Them thanh cong");
 
     }
 
