@@ -4,11 +4,18 @@
  */
 package Buoi5;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Admin
  */
 public class StudentMangementDemo extends javax.swing.JFrame {
+
+    private List<Student> StudentList = new ArrayList<>();
 
     /**
      * Creates new form StudentMangementDemo
@@ -38,20 +45,35 @@ public class StudentMangementDemo extends javax.swing.JFrame {
         CbbStudent.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         BtnFill.setText("Fill");
+        BtnFill.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnFillActionPerformed(evt);
+            }
+        });
 
         BtnOk.setText("Ok");
+        BtnOk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnOkActionPerformed(evt);
+            }
+        });
 
         BtnAll.setText("All");
+        BtnAll.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAllActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Điểm", "Họ tên"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -93,6 +115,38 @@ public class StudentMangementDemo extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void BtnFillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnFillActionPerformed
+        // TODO add your handling code here:
+        StudentList.add(new Student("Loan", 2));
+        StudentList.add(new Student("Huy", 6));
+        StudentList.add(new Student("Hung", 8));
+        StudentList.add(new Student("Hoan", 1));
+        StudentList.add(new Student("Tam", 4));
+        StudentList.add(new Student("Khoa", 4));
+        
+        CbbStudent.removeAllItems();
+        for (var student : StudentList) {
+            CbbStudent.addItem(student.getName());
+        }
+    }//GEN-LAST:event_BtnFillActionPerformed
+
+    private void BtnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnOkActionPerformed
+        // TODO add your handling code here:
+        var selected  = (String) CbbStudent.getSelectedItem();
+        var index = CbbStudent.getSelectedIndex();
+        JOptionPane.showMessageDialog(null, selected);
+        JOptionPane.showMessageDialog(null, StudentList.get(index).getGrade());
+    }//GEN-LAST:event_BtnOkActionPerformed
+
+    private void BtnAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAllActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel defaultTableModel = (DefaultTableModel)jTable1.getModel();
+        defaultTableModel.setRowCount(0);
+        for (Student student : StudentList) {
+            defaultTableModel.addRow(new Object[] {student.getGrade(),student.getName()});
+        }
+    }//GEN-LAST:event_BtnAllActionPerformed
 
     /**
      * @param args the command line arguments
