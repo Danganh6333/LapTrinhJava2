@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumnModel;
 
 /**
  *
@@ -22,6 +24,13 @@ public class StudentMangementDemo extends javax.swing.JFrame {
      */
     public StudentMangementDemo() {
         initComponents();
+        CbbStudent.removeAllItems();
+        
+        JTableHeader jTableHeader = jTable1.getTableHeader();
+        TableColumnModel columnModel = jTableHeader.getColumnModel();
+        columnModel.getColumn(0);
+        columnModel.getColumn(0).setHeaderValue("Grade");
+        columnModel.getColumn(1).setHeaderValue("Name");
     }
 
     /**
