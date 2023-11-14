@@ -7,6 +7,7 @@ package Assigment;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -28,11 +29,11 @@ public class Assignment extends javax.swing.JFrame implements Runnable {
     public Assignment() {
         initComponents();
         this.employeeService = new EmployeeService();
-        this.employeeService.Nhap(new Employee(1, "Phi Ly Hoa", 22, "Hoa22@gmail.com", 3000000.0));
-        this.employeeService.Nhap(new Employee(2, "Phan Huy Quang", 28, "Quang28@gmail.com", 7000000.0));
-        this.employeeService.Nhap(new Employee(3, "Vu Cam Nam", 25, "Nam25@gmail.com", 3000000.0));
-        this.employeeService.Nhap(new Employee(4, "La Tu Minh", 23, "Minh23@gmail.com", 4000000.0));
-        this.employeeService.Nhap(new Employee(5, "Ninh Cam Lan", 21, "Lan21@gmail.com", 3000000.0));
+        this.employeeService.Nhap(new Employee(1, "Phi Ly Hoa", 22, "Hoa22@gmail.com", 7000000.0));
+        this.employeeService.Nhap(new Employee(2, "Phan Huy Quang", 28, "Quang28@gmail.com", 9000000.0));
+        this.employeeService.Nhap(new Employee(3, "Vu Cam Nam", 25, "Nam25@gmail.com", 6000000.0));
+        this.employeeService.Nhap(new Employee(4, "La Tu Minh", 23, "Minh23@gmail.com", 8000000.0));
+        this.employeeService.Nhap(new Employee(5, "Ninh Cam Lan", 21, "Lan21@gmail.com", 9000000.0));
         this.fillToTable();
     }
 
@@ -128,6 +129,16 @@ public class Assignment extends javax.swing.JFrame implements Runnable {
 
         tfLuong.setMinimumSize(new java.awt.Dimension(7, 26));
         tfLuong.setPreferredSize(new java.awt.Dimension(8, 30));
+        tfLuong.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfLuongActionPerformed(evt);
+            }
+        });
+        tfLuong.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfLuongKeyTyped(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(153, 255, 51)));
 
@@ -405,11 +416,34 @@ public class Assignment extends javax.swing.JFrame implements Runnable {
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
         Index = tblEmployee.getSelectedRow();
+        if (tfMaNhanVien.getText().equalsIgnoreCase("") || tfHoVaTen.getText().equalsIgnoreCase("")
+                || tfEmail.getText().equalsIgnoreCase("")
+                || tfTuoi.getText().equalsIgnoreCase("") || tfLuong.getText().equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(null, "Không nên để trống các trường dữ liệu");
+            return;
+        }
+        try {
+            int tuoi = Integer.parseInt(tfTuoi.getText());
+            if (tuoi > 16 && tuoi < 55) {
+            } else {
+                JOptionPane.showMessageDialog(null, "Tuổi không phù hợp");
+                return;
+            }
+            
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Tuổi phải là 1 con số");
+        }
+        double luong = Double.parseDouble(tfLuong.getText());
+        if (luong <= 5000000) {
+            JOptionPane.showMessageDialog(null, "Lương phải trên 5 triệu");
+            return;
+        }
         if (Index == -1) {
             this.addEmployee();
         } else {
             this.updateEmployee();
         }
+
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
@@ -436,6 +470,19 @@ public class Assignment extends javax.swing.JFrame implements Runnable {
         tblEmployee.setRowSelectionInterval(Index, Index);
         showDetail();
     }//GEN-LAST:event_btnLastActionPerformed
+
+    private void tfLuongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfLuongActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_tfLuongActionPerformed
+
+    private void tfLuongKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfLuongKeyTyped
+        // TODO add your handling code here:
+        char s = evt.getKeyChar();
+        if(Character.isAlphabetic(s)){
+            evt.consume();
+        }
+    }//GEN-LAST:event_tfLuongKeyTyped
 
     public void fillToTable() {
         defaultTableModel = (DefaultTableModel) tblEmployee.getModel();
@@ -503,6 +550,14 @@ public class Assignment extends javax.swing.JFrame implements Runnable {
 
     public void removeEmployee() {
         Index = tblEmployee.getSelectedRow();
+        if (Index == -1) {
+            JOptionPane.showMessageDialog(null, "Chưa chọn dòng để xóa");
+            return;
+        }
+        int Check = JOptionPane.showConfirmDialog(this, "Có mưốn xóa không ?", "Delete", JOptionPane.YES_NO_OPTION);
+        if (Check != JOptionPane.YES_OPTION) {
+            return;
+        }
         this.employeeService.Xoa(Index);
         this.fillToTable();
     }
