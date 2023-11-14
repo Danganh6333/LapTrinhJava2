@@ -25,6 +25,14 @@ public class EmployeeService {
     public void Sua(int ViTri,Employee n){
         this.list.set(ViTri,n);
     }
+    public Employee Tim(String Id){
+        for (Employee employee : list) {
+            if(String.valueOf(employee.getMaNV()).equals(Id)){
+              return employee;
+            }
+        }
+        return null;
+    }
     public ArrayList<Employee> LayDanhSach(){
         return list;
     }

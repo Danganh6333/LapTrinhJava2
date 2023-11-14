@@ -14,17 +14,14 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Bai4 extends javax.swing.JFrame {
 
-    List<User> list = new ArrayList<>();
-    DefaultTableModel defaultTableModel;
+    
 
     /**
      * Creates new form Bai4
      */
     public Bai4() {
         initComponents();
-        defaultTableModel = (DefaultTableModel) tblUserList.getModel();
-        defaultTableModel.setRowCount(0);
-        fillTable();
+        
 
     }
 
@@ -240,50 +237,17 @@ public class Bai4 extends javax.swing.JFrame {
         // TODO add your handling code here:
         removeUser();
     }//GEN-LAST:event_btnRemoveActionPerformed
-    void fakeData() {
-        list.add(new User("User 1", "Pass 1", "Nam"));
-        list.add(new User("User 2", "Pass 2", "Nữ"));
-        list.add(new User("User 3", "Pass 3", "Nam"));
-        list.add(new User("User 4", "Pass 4", "Nữ"));
-        list.add(new User("User 5", "Pass 5", "Nam"));
-        list.add(new User("User 6", "Pass 6", "Nữ"));
-    }
-
-    void fillTable() {
-        if (list.isEmpty()) {
-            fakeData();
-        } else {
-            for (User user : list) {
-                Object[] row = new Object[]{
-                    user.getUsername(),
-                    user.getPassword(),
-                    user.getRole()
-                };
-                defaultTableModel.addRow(row);
-            }
-        }
-
-    }
+    
 
     void writeForm() {
     }
 
     void addUser() {
-        User u = new User();
-        u.username = jTextField1.getText();
-        u.password = jTextField2.getText();
-        if (jRadioButton1.isSelected()) {
-            u.role = "Nam";
-        } else if (jRadioButton2.isSelected()) {
-            u.role = "Nữ";
-        }
-        list.add(u);
-        fillTable();
+        
     }
 
     void removeUser() {
-        int Index = tblUserList.getSelectedRow();
-        list.remove(Index);
+        
     }
 
     void updateUser() {

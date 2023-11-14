@@ -5,6 +5,7 @@
 package Assigment;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -22,6 +23,8 @@ public class Assignment extends javax.swing.JFrame implements Runnable {
     EmployeeService employeeService;
     Employee employee;
     int Index;
+    private static final String EMAIL_REGEX =
+            "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
 
     /**
      * Creates new form Assignment
@@ -84,8 +87,13 @@ public class Assignment extends javax.swing.JFrame implements Runnable {
                 tfMaNhanVienActionPerformed(evt);
             }
         });
+        tfMaNhanVien.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfMaNhanVienKeyTyped(evt);
+            }
+        });
 
-        jLabel5.setText("MÃ NHÂN VIÊN");
+        jLabel5.setText("MÃ NHÂN VIÊN ");
         jLabel5.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
 
         tblEmployee.setModel(new javax.swing.table.DefaultTableModel(
@@ -403,7 +411,7 @@ public class Assignment extends javax.swing.JFrame implements Runnable {
 
     private void btnFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindActionPerformed
         // TODO add your handling code here:
-        this.findEmployee();
+        this.findEmployee(tfMaNhanVien.getText());
         this.showDetail();
     }//GEN-LAST:event_btnFindActionPerformed
 
@@ -421,6 +429,13 @@ public class Assignment extends javax.swing.JFrame implements Runnable {
                 || tfTuoi.getText().equalsIgnoreCase("") || tfLuong.getText().equalsIgnoreCase("")) {
             JOptionPane.showMessageDialog(null, "Không nên để trống các trường dữ liệu");
             return;
+        }
+        String email = tfEmail.getText().trim();
+        if(!email.matches(EMAIL_REGEX)){
+            JOptionPane.showMessageDialog(null,"Email không đúng định dạng");
+        }
+        for (Employee e : employees) {
+            
         }
         try {
             int tuoi = Integer.parseInt(tfTuoi.getText());
@@ -475,6 +490,14 @@ public class Assignment extends javax.swing.JFrame implements Runnable {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_tfLuongActionPerformed
+
+    private void tfMaNhanVienKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfMaNhanVienKeyTyped
+        // TODO add your handling code here:
+        char s = evt.getKeyChar();
+        if(Character.isAlphabetic(s)){
+            evt.consume();
+        }
+    }//GEN-LAST:event_tfMaNhanVienKeyTyped
 
     private void tfLuongKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfLuongKeyTyped
         // TODO add your handling code here:
@@ -562,7 +585,16 @@ public class Assignment extends javax.swing.JFrame implements Runnable {
         this.fillToTable();
     }
 
-    public void findEmployee() {
+    public void findEmployee(String id) {
+       if(employeeService.Tim(tfMaNhanVien.getText())== null){
+           JOptionPane.showMessageDialog(null, "Không tìm thấy");
+       }else{
+           tfHoVaTen.setText(employee.getHoTenNV());
+           tfTuoi.setText(String.valueOf(employee.getTuoiNV()));
+           tfEmail.setText(employee.getEmailNV());
+           tfLuong.setText(String.valueOf(employee.getLuongNV()));
+       }
+
     }
 
     public void clearForm() {
@@ -646,8 +678,7 @@ public class Assignment extends javax.swing.JFrame implements Runnable {
                 String st = sdf.format(date);
                 btnStream.setText(st);
                 Thread.sleep(6000);
-            } catch (Exception ex) {
-                ex.printStackTrace();
+            } catch (InterruptedException ex) {
             }
         }
     }
