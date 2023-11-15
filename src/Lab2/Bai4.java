@@ -6,6 +6,7 @@ package Lab2;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -14,15 +15,21 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Bai4 extends javax.swing.JFrame {
 
-    
-
+    List<User> list = new ArrayList<>();
+    DefaultTableModel defaultTableModel;
+    int Index;
     /**
      * Creates new form Bai4
      */
     public Bai4() {
         initComponents();
+        defaultTableModel = (DefaultTableModel) tblUserList.getModel();
+        list.add(new User("Person1", "Pass1", "Admin"));
+        list.add(new User("Person2", "Pass2", "User"));
+        list.add(new User("Person3", "Pass3", "User"));
+        list.add(new User("Person4", "Pass4", "Admin"));
         
-
+        fillTable();
     }
 
     /**
@@ -34,6 +41,7 @@ public class Bai4 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -63,6 +71,7 @@ public class Bai4 extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setText("Role");
 
+        buttonGroup1.add(jRadioButton1);
         jRadioButton1.setText("User");
         jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,6 +79,7 @@ public class Bai4 extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(jRadioButton2);
         jRadioButton2.setText("Admin");
 
         btnAdd.setText("Add");
@@ -167,6 +177,11 @@ public class Bai4 extends javax.swing.JFrame {
                 "USERNAME", "PASSWORD", "ROLE"
             }
         ));
+        tblUserList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblUserListMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblUserList);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -237,27 +252,73 @@ public class Bai4 extends javax.swing.JFrame {
         // TODO add your handling code here:
         removeUser();
     }//GEN-LAST:event_btnRemoveActionPerformed
-    
+
+    private void tblUserListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblUserListMouseClicked
+        // TODO add your handling code here:
+        writeForm();
+    }//GEN-LAST:event_tblUserListMouseClicked
 
     void writeForm() {
+        Index = tblUserList.getSelectedRow();
+        String name = defaultTableModel.getValueAt(Index, 0).toString();
+        String pass = defaultTableModel.getValueAt(Index, 1).toString();
+        String role = defaultTableModel.getValueAt(Index, 2).toString();
+        jTextField1.setText(name);
+        jTextField2.setText(pass);
+        if (role.equalsIgnoreCase("User")) {
+            jRadioButton1.setSelected(true);
+        } else if (role.equalsIgnoreCase("Admin")) {
+            jRadioButton2.setSelected(true);
+        }
+        fillTable();
     }
 
     void addUser() {
-        
+        User u = new User();
+        if(jTextField1.getText().equals("") || jTextField2.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Ô nhập đang rỗng");
+            return;
+        }
+        if(!jRadioButton1.isSelected() && !jRadioButton2.isSelected()){
+            JOptionPane.showMessageDialog(null, "Chưa chọn đáp án");
+            return;
+        }
+        u.setUsername(jTextField1.getText());
+        u.setPassword(jTextField2.getText());
+        if (jRadioButton1.isSelected()) {
+            u.setRole("User");
+        } else if (jRadioButton2.isSelected()) {
+            u.setRole("Admin");
+        }
+        list.add(u);
+        fillTable();
+    }
+
+    void fillTable() {
+        defaultTableModel.setRowCount(0);
+        for (User a : list) {
+            defaultTableModel.addRow(new Object[]{
+                a.getUsername(), a.getPassword(), a.getRole()
+            });
+
+        }
     }
 
     void removeUser() {
-        
+        Index = tblUserList.getSelectedRow();
+        defaultTableModel.removeRow(Index);
+        list.remove(Index);
     }
 
     void updateUser() {
+        
+        
     }
 
     void clearForm() {
         jTextField1.setText("");
         jTextField2.setText("");
-        jRadioButton1.setSelected(false);
-        jRadioButton2.setSelected(false);
+        buttonGroup1.clearSelection();
     }
 
     /**
@@ -300,6 +361,7 @@ public class Bai4 extends javax.swing.JFrame {
     private javax.swing.JButton btnRemove;
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
