@@ -194,13 +194,12 @@ public class QuanLySinhVien extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel1)
-                        .addGap(185, 185, 185))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addComponent(btnSXTheoTen)
-                .addGap(18, 18, 18)
-                .addComponent(btnSXTheoDiem)
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(185, 185, 185))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnSXTheoTen)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnSXTheoDiem)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel2, jLabel3, jLabel4, jLabel5});
@@ -238,7 +237,7 @@ public class QuanLySinhVien extends javax.swing.JFrame {
                     .addComponent(btnNhapMoi))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSXTheoTen)
                     .addComponent(btnSXTheoDiem))
@@ -246,6 +245,7 @@ public class QuanLySinhVien extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void chkPhanThuongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkPhanThuongActionPerformed
@@ -283,13 +283,13 @@ public class QuanLySinhVien extends javax.swing.JFrame {
 
     private void tfDiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfDiemActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_tfDiemActionPerformed
 
     private void tfHocLucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfHocLucActionPerformed
         // TODO add your handling code here:
         setEnabled(false);
-       
+
     }//GEN-LAST:event_tfHocLucActionPerformed
 
     private void tfDiemKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfDiemKeyTyped
@@ -298,7 +298,7 @@ public class QuanLySinhVien extends javax.swing.JFrame {
         if (!Character.isDigit(d)) {
             evt.consume();
         }
-        if(tfDiem.getText().length() >= 2){
+        if (tfDiem.getText().length() >= 2) {
             evt.consume();
         }
     }//GEN-LAST:event_tfDiemKeyTyped
@@ -307,13 +307,18 @@ public class QuanLySinhVien extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.updateStudent();
         this.fillToTable();
-        
+
     }//GEN-LAST:event_btnCapNhatActionPerformed
     public void addStudent() {
         Student s = new Student();
-        if(tfHoVaTen.getText().equalsIgnoreCase("") && 
-                tfDiem.getText().equalsIgnoreCase("")){
+        if (tfHoVaTen.getText().equalsIgnoreCase("")
+                || tfDiem.getText().equalsIgnoreCase("")) {
             JOptionPane.showMessageDialog(null, "Không nên để trống");
+            return;
+        }
+        int Value = 10;
+        if(Double.parseDouble(tfDiem.getText()) > Value){
+            JOptionPane.showMessageDialog(null, "Điểm không phù hợp");
             return;
         }
         s.name = tfHoVaTen.getText();
@@ -322,6 +327,9 @@ public class QuanLySinhVien extends javax.swing.JFrame {
         students.add(s);
         tfHocLuc.setText(s.getGrade());
         chkPhanThuong.setSelected(s.isBonus());
+        tfHoVaTen.setText("");
+        tfDiem.setText("");
+        
     }
 
     public void removeStudent() {
@@ -335,27 +343,27 @@ public class QuanLySinhVien extends javax.swing.JFrame {
     public void updateStudent() {
         int Index = StudentTable.getSelectedRow();
         if (Index == -1) {
+            JOptionPane.showMessageDialog(null,"Chưa chọn dòng");
             return;
         }
-        if(tfHoVaTen.getText().equalsIgnoreCase("") && 
-                tfDiem.getText().equalsIgnoreCase("")){
+        if (tfHoVaTen.getText().equalsIgnoreCase("")
+                || tfDiem.getText().equalsIgnoreCase("")) {
             JOptionPane.showMessageDialog(null, "Không nên để trống");
             return;
         }
-        if(tfHoVaTen.getText().equalsIgnoreCase("") && 
-                tfDiem.getText().equalsIgnoreCase("")){
-            JOptionPane.showMessageDialog(null, "Không nên để trống");
+        double Value = 10.0;
+        if(Double.parseDouble(tfDiem.getText()) > Value){
+            JOptionPane.showMessageDialog(null, "Điểm không phù hợp");
             return;
         }
-        for(var student : students){
-                if(student.getName().equals(tfHoVaTen.getText())){
-                    student.setName(tfHoVaTen.getText());
-                    student.setMajor((String) CbbNghanh.getSelectedItem());
-                    student.setMarks(Double.parseDouble(tfDiem.getText()));
-                    
-                    break;
-                }
+        for (var student : students) {
+            if (student.getName().equals(tfHoVaTen.getText())) {
+                student.setName(tfHoVaTen.getText());
+                student.setMajor((String) CbbNghanh.getSelectedItem());
+                student.setMarks(Double.parseDouble(tfDiem.getText()));
             }
+        }
+        showDetail();
     }
 
     public void fillToTable() {
@@ -370,14 +378,14 @@ public class QuanLySinhVien extends javax.swing.JFrame {
 
     public void showDetail() {
         int index = StudentTable.getSelectedRow();
-        
-        if(index >= 0){
-            String stu = (String)StudentTable.getValueAt(index,0);
-            for(var student : students){
-                if(stu.equals(student.getName())){
+
+        if (index >= 0) {
+            String stu = (String) StudentTable.getValueAt(index, 0);
+            for (var student : students) {
+                if (stu.equals(student.getName())) {
                     tfHoVaTen.setText(student.getName());
                     tfHocLuc.setText(student.getGrade());
-                    tfDiem.setText(""+student.getMarks());
+                    tfDiem.setText("" + student.getMarks());
                     CbbNghanh.setSelectedItem(student.getMajor());
                     chkPhanThuong.setSelected(student.isBonus());
                     break;
@@ -393,19 +401,19 @@ public class QuanLySinhVien extends javax.swing.JFrame {
                 return o1.name.compareTo(o2.name);
             }
         };
-        Collections.sort(students,comparator);
+        Collections.sort(students, comparator);
     }
 
     public void orderByMarks() {
         Comparator<Student> c = new Comparator<Student>() {
             @Override
             public int compare(Student o1, Student o2) {
-               Double d1 = o1.marks;
-               Double d2 = o2.marks;
-               return d1.compareTo(d2);
+                Double d1 = o1.marks;
+                Double d2 = o2.marks;
+                return d1.compareTo(d2);
             }
         };
-        Collections.sort(students,c);
+        Collections.sort(students, c);
     }
 
     /**

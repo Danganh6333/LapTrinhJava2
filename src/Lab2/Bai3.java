@@ -144,7 +144,7 @@ public class Bai3 extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        if(jTextField1.getText().isEmpty() && jTextField2.getText().isEmpty()){
+        if(jTextField1.getText().isEmpty() || jTextField2.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Null Input");
         }else if(jTextField1.getText().equals("fpt") && jTextField2.getText().equals("polytechnic")){
             JOptionPane.showMessageDialog(null, "Login Successful");

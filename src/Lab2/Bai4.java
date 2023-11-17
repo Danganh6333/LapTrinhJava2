@@ -251,6 +251,7 @@ public class Bai4 extends javax.swing.JFrame {
     private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
         // TODO add your handling code here:
         removeUser();
+        btnResetActionPerformed(evt);
     }//GEN-LAST:event_btnRemoveActionPerformed
 
     private void tblUserListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblUserListMouseClicked
@@ -305,9 +306,14 @@ public class Bai4 extends javax.swing.JFrame {
     }
 
     void removeUser() {
-        Index = tblUserList.getSelectedRow();
-        defaultTableModel.removeRow(Index);
-        list.remove(Index);
+        for (User user : list) {
+            if(user.getUsername().equals(jTextField1.getText())){
+                list.remove(user);
+                fillTable();
+            }else{
+                return;
+            }
+        }
     }
 
     void updateUser() {

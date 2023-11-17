@@ -22,7 +22,7 @@ public class NoTaxProduct extends Product{
          
             System.out.println("Product : " + i);
             Product product;
-
+            
             if(i==1){
                 product = new NoTaxProduct();
             }else{
@@ -36,7 +36,7 @@ public class NoTaxProduct extends Product{
             double dGia = scanner.nextDouble();
             product.setPrice(dGia);
             scanner.nextLine();
-
+            
             System.out.println("The Name Of The Product : " + product.getName());
             System.out.println("The Price Of The Product : " + product.getPrice());
             System.out.println("The Import Tax Of The Product :" + product.getImportTax());

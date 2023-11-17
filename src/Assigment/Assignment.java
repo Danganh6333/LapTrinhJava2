@@ -5,7 +5,6 @@
 package Assigment;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -23,8 +22,8 @@ public class Assignment extends javax.swing.JFrame implements Runnable {
     EmployeeService employeeService;
     Employee employee;
     int Index;
-    private static final String EMAIL_REGEX =
-            "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+    private static final String EMAIL_REGEX
+            = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
 
     /**
      * Creates new form Assignment
@@ -49,18 +48,18 @@ public class Assignment extends javax.swing.JFrame implements Runnable {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        txtTitle = new javax.swing.JLabel();
         tfMaNhanVien = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
+        lblMaNhanVien = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblEmployee = new javax.swing.JTable();
-        jLabel6 = new javax.swing.JLabel();
+        lblHoVaTen = new javax.swing.JLabel();
         tfHoVaTen = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
+        lblTuoi = new javax.swing.JLabel();
         tfTuoi = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
+        lblEmail = new javax.swing.JLabel();
         tfEmail = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
+        lblLuong = new javax.swing.JLabel();
         tfLuong = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         btnNew = new javax.swing.JButton();
@@ -77,8 +76,8 @@ public class Assignment extends javax.swing.JFrame implements Runnable {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        jLabel1.setText("Quản Lý Nhân Viên");
+        txtTitle.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        txtTitle.setText("Quản Lý Nhân Viên");
 
         tfMaNhanVien.setMinimumSize(new java.awt.Dimension(7, 26));
         tfMaNhanVien.setPreferredSize(new java.awt.Dimension(8, 30));
@@ -93,8 +92,8 @@ public class Assignment extends javax.swing.JFrame implements Runnable {
             }
         });
 
-        jLabel5.setText("MÃ NHÂN VIÊN ");
-        jLabel5.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
+        lblMaNhanVien.setText("MÃ NHÂN VIÊN ");
+        lblMaNhanVien.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
 
         tblEmployee.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -114,26 +113,26 @@ public class Assignment extends javax.swing.JFrame implements Runnable {
         });
         jScrollPane1.setViewportView(tblEmployee);
 
-        jLabel6.setText("      HỌ VÀ TÊN ");
-        jLabel6.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
+        lblHoVaTen.setText("      HỌ VÀ TÊN ");
+        lblHoVaTen.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
 
         tfHoVaTen.setMinimumSize(new java.awt.Dimension(7, 26));
         tfHoVaTen.setPreferredSize(new java.awt.Dimension(8, 30));
 
-        jLabel7.setText("                 TUỔI ");
-        jLabel7.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
+        lblTuoi.setText("                 TUỔI ");
+        lblTuoi.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
 
         tfTuoi.setMinimumSize(new java.awt.Dimension(7, 26));
         tfTuoi.setPreferredSize(new java.awt.Dimension(8, 30));
 
-        jLabel8.setText("                EMAIL ");
-        jLabel8.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
+        lblEmail.setText("                EMAIL ");
+        lblEmail.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
 
         tfEmail.setMinimumSize(new java.awt.Dimension(7, 26));
         tfEmail.setPreferredSize(new java.awt.Dimension(8, 30));
 
-        jLabel9.setText("              LƯƠNG ");
-        jLabel9.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
+        lblLuong.setText("              LƯƠNG ");
+        lblLuong.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
 
         tfLuong.setMinimumSize(new java.awt.Dimension(7, 26));
         tfLuong.setPreferredSize(new java.awt.Dimension(8, 30));
@@ -282,13 +281,13 @@ public class Assignment extends javax.swing.JFrame implements Runnable {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 723, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblLuong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(lblMaNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblTuoi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblHoVaTen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(28, 28, 28)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(tfHoVaTen, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
@@ -308,7 +307,7 @@ public class Assignment extends javax.swing.JFrame implements Runnable {
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(64, 64, 64))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(txtTitle)
                         .addGap(215, 215, 215)
                         .addComponent(btnStream, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(20, 20, 20)))
@@ -317,7 +316,7 @@ public class Assignment extends javax.swing.JFrame implements Runnable {
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {tfEmail, tfHoVaTen, tfMaNhanVien, tfTuoi});
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel5, jLabel6, jLabel7, jLabel8, jLabel9});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {lblEmail, lblHoVaTen, lblLuong, lblMaNhanVien, lblTuoi});
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnFirst, btnLast, btnNext, btnPrevious});
 
@@ -327,31 +326,31 @@ public class Assignment extends javax.swing.JFrame implements Runnable {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(txtTitle)
                         .addGap(39, 39, 39))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnStream, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblMaNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfMaNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblHoVaTen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tfHoVaTen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblTuoi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tfTuoi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblLuong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tfLuong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(33, 33, 33)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -431,11 +430,8 @@ public class Assignment extends javax.swing.JFrame implements Runnable {
             return;
         }
         String email = tfEmail.getText().trim();
-        if(!email.matches(EMAIL_REGEX)){
-            JOptionPane.showMessageDialog(null,"Email không đúng định dạng");
-        }
-        for (Employee e : employees) {
-            
+        if (!email.matches(EMAIL_REGEX)) {
+            JOptionPane.showMessageDialog(null, "Email không đúng định dạng");
         }
         try {
             int tuoi = Integer.parseInt(tfTuoi.getText());
@@ -444,7 +440,7 @@ public class Assignment extends javax.swing.JFrame implements Runnable {
                 JOptionPane.showMessageDialog(null, "Tuổi không phù hợp");
                 return;
             }
-            
+
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Tuổi phải là 1 con số");
         }
@@ -488,13 +484,13 @@ public class Assignment extends javax.swing.JFrame implements Runnable {
 
     private void tfLuongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfLuongActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_tfLuongActionPerformed
 
     private void tfMaNhanVienKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfMaNhanVienKeyTyped
         // TODO add your handling code here:
         char s = evt.getKeyChar();
-        if(Character.isAlphabetic(s)){
+        if (Character.isAlphabetic(s)) {
             evt.consume();
         }
     }//GEN-LAST:event_tfMaNhanVienKeyTyped
@@ -502,7 +498,7 @@ public class Assignment extends javax.swing.JFrame implements Runnable {
     private void tfLuongKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfLuongKeyTyped
         // TODO add your handling code here:
         char s = evt.getKeyChar();
-        if(Character.isAlphabetic(s)){
+        if (Character.isAlphabetic(s)) {
             evt.consume();
         }
     }//GEN-LAST:event_tfLuongKeyTyped
@@ -552,6 +548,13 @@ public class Assignment extends javax.swing.JFrame implements Runnable {
         String col4 = tfEmail.getText();
         double col5 = Double.parseDouble(tfLuong.getText());
 
+        int value = Integer.parseInt(tfMaNhanVien.getText());
+        for (var e : employees) {
+            if (e.getMaNV() == value) {
+                JOptionPane.showMessageDialog(null, "Không nên để trùng");
+                return;
+            }
+        }
         employee = new Employee(col1, col2, col3, col4, col5);
         this.employeeService.Nhap(employee);
         this.fillToTable();
@@ -586,14 +589,14 @@ public class Assignment extends javax.swing.JFrame implements Runnable {
     }
 
     public void findEmployee(String id) {
-       if(employeeService.Tim(tfMaNhanVien.getText())== null){
-           JOptionPane.showMessageDialog(null, "Không tìm thấy");
-       }else{
-           tfHoVaTen.setText(employee.getHoTenNV());
-           tfTuoi.setText(String.valueOf(employee.getTuoiNV()));
-           tfEmail.setText(employee.getEmailNV());
-           tfLuong.setText(String.valueOf(employee.getLuongNV()));
-       }
+        if (employeeService.Tim(tfMaNhanVien.getText()) == null) {
+            JOptionPane.showMessageDialog(null, "Không tìm thấy");
+        } else {
+            tfHoVaTen.setText(employee.getHoTenNV());
+            tfTuoi.setText(String.valueOf(employee.getTuoiNV()));
+            tfEmail.setText(employee.getEmailNV());
+            tfLuong.setText(String.valueOf(employee.getLuongNV()));
+        }
 
     }
 
@@ -652,20 +655,20 @@ public class Assignment extends javax.swing.JFrame implements Runnable {
     private javax.swing.JButton btnPrevious;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnStream;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblEmail;
+    private javax.swing.JLabel lblHoVaTen;
+    private javax.swing.JLabel lblLuong;
+    private javax.swing.JLabel lblMaNhanVien;
+    private javax.swing.JLabel lblTuoi;
     private javax.swing.JTable tblEmployee;
     private javax.swing.JTextField tfEmail;
     private javax.swing.JTextField tfHoVaTen;
     private javax.swing.JTextField tfLuong;
     private javax.swing.JTextField tfMaNhanVien;
     private javax.swing.JTextField tfTuoi;
+    private javax.swing.JLabel txtTitle;
     // End of variables declaration//GEN-END:variables
     int count = 0;
     SimpleDateFormat sdf = new SimpleDateFormat("\"hh:mm a\"");
