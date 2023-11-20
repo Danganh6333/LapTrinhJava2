@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Assigment;
 
 import java.text.SimpleDateFormat;
@@ -440,7 +436,6 @@ public class Assignment extends javax.swing.JFrame implements Runnable {
                 JOptionPane.showMessageDialog(null, "Tuổi không phù hợp");
                 return;
             }
-
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Tuổi phải là 1 con số");
         }
@@ -619,7 +614,7 @@ public class Assignment extends javax.swing.JFrame implements Runnable {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Flatlaf".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
