@@ -18,6 +18,7 @@ public class Bai4 extends javax.swing.JFrame {
     List<User> list = new ArrayList<>();
     DefaultTableModel defaultTableModel;
     int Index;
+
     /**
      * Creates new form Bai4
      */
@@ -28,7 +29,7 @@ public class Bai4 extends javax.swing.JFrame {
         list.add(new User("Person2", "Pass2", "User"));
         list.add(new User("Person3", "Pass3", "User"));
         list.add(new User("Person4", "Pass4", "Admin"));
-        
+
         fillTable();
     }
 
@@ -276,11 +277,11 @@ public class Bai4 extends javax.swing.JFrame {
 
     void addUser() {
         User u = new User();
-        if(jTextField1.getText().equals("") || jTextField2.getText().equals("")){
+        if (jTextField1.getText().equals("") || jTextField2.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Ô nhập đang rỗng");
             return;
         }
-        if(!jRadioButton1.isSelected() && !jRadioButton2.isSelected()){
+        if (!jRadioButton1.isSelected() && !jRadioButton2.isSelected()) {
             JOptionPane.showMessageDialog(null, "Chưa chọn đáp án");
             return;
         }
@@ -292,6 +293,7 @@ public class Bai4 extends javax.swing.JFrame {
             u.setRole("Admin");
         }
         list.add(u);
+        clearForm();
         fillTable();
     }
 
@@ -306,19 +308,52 @@ public class Bai4 extends javax.swing.JFrame {
     }
 
     void removeUser() {
+        if (jTextField1.getText().equals("") || jTextField2.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Ô nhập đang rỗng");
+            return;
+        }
+        if (!jRadioButton1.isSelected() && !jRadioButton2.isSelected()) {
+            JOptionPane.showMessageDialog(null, "Chưa chọn đáp án");
+            return;
+        }
         for (User user : list) {
-            if(user.getUsername().equals(jTextField1.getText())){
-                list.remove(user);
-                fillTable();
-            }else{
-                return;
+            if (user.getUsername().equals(jTextField1.getText())) {
+                int choice = (JOptionPane.showConfirmDialog(this, "Xóa", "Bãn có muốn xóa", JOptionPane.YES_NO_OPTION));
+                if (choice == JOptionPane.YES_OPTION) {
+                    list.remove(user);
+                    fillTable();
+                    return;
+                }
             }
         }
+        JOptionPane.showMessageDialog(null, "Không tồn tại");
     }
 
     void updateUser() {
-        
-        
+        if (jTextField1.getText().equals("") || jTextField2.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Ô nhập đang rỗng");
+            return;
+        }
+        if (!jRadioButton1.isSelected() && !jRadioButton2.isSelected()) {
+            JOptionPane.showMessageDialog(null, "Chưa chọn đáp án");
+            return;
+        }
+        for (User user : list) {
+            if (user.getUsername().equals(jTextField1.getText())) {
+                int choice = (JOptionPane.showConfirmDialog(this, "Cập Nhật", "Bãn có muốn cập nhật", JOptionPane.YES_NO_OPTION));
+                if (choice == JOptionPane.YES_OPTION) {
+                    user.setPassword(jTextField2.getText());
+                    if (jRadioButton1.isSelected()) {
+                        user.setRole("User");
+                    } else if (jRadioButton2.isSelected()) {
+                        user.setRole("Admin");
+                    }
+                    fillTable();
+                    JOptionPane.showMessageDialog(null, "Cập nhật thành công");
+                    return;
+                }
+            }
+        }
     }
 
     void clearForm() {
